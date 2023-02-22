@@ -91,11 +91,14 @@ const All = () => {
   console.log('fetchdata', fgroup);
   return (
     <div className="max-w-[1100px] mx-auto sm:p-2  ">
-      <div className="  grid grid-cols-1   mx-5   mb-5 sm:mb-10   sm:grid-cols-2 md:grid-cols-3 gap-1  ">
+      <div className="  grid grid-cols-1   
+      mx-5   mb-5 sm:mb-10   sm:grid-cols-2 md:grid-cols-3 gap-1  ">
         {fgroup !== 'false'
           ? all?.cardslength > 6 && all?.showall === 'false'
             ? all.possiblecards.map((card) => (
-              <div className="border border-grey-400 drop-shadow-lg relative grid justify-items-center bg-white mt-14">
+              <div className="
+              border border-grey-400 drop-shadow-lg relative grid 
+              justify-items-center bg-white mt-14">
               <img
                 src={card.file}
                 className="h-20  w-15 absolute top-[-2.5rem] img"
@@ -103,7 +106,73 @@ const All = () => {
               />
               <strong className="pt-12 ">{card.gname}</strong>
               <p className="text-center line-clamp-2
-              break-all h-12 text-ellipsis overflow-hidden">
+              break-all h-12 w-3/4 text-ellipsis overflow-hidden">
+                {card.gdef}
+              </p>
+              <p className="text-center mt-2">
+                {card.terms
+                  ? card.terms.length === 1
+                    ? `${card.terms.length} card`
+                    : `${card.terms.length} cards`
+                  : ''}
+              </p>
+              <div className="flex flex-row gap-3">
+                <Link
+                  to={`/groupdetails/${card.gid}/1`}
+                  className="btn text-center mt-5 pt-1 pb-1 font-bold mb-3 
+                  text-red-600 border-2 border-red-600 pl-2 pr-2"
+                >
+                  View Cards
+                </Link>
+                <button
+                  onClick={(e) => openModal(card.gid)}
+                  className=" btn text-center mt-5 pt-1 pb-1 font-bold mb-3 text-red-600 border-2 border-red-600 pl-2 pr-2"
+                >
+                  Delete
+                </button>
+              </div>
+              <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+              >
+                <div className="w-96 rounded p-5">
+                  <img src={info} className="center" alt="" />
+                  <h3 className="font-bold text-center">
+                    Do You Want To Delete This Card
+                  </h3>
+                  <div className="mt-3 flex justify-center gap-3 w-100">
+                    <button
+                      className="btn text-center mt-5 pt-1 pb-1 font-bold mb-3 bg-green-600 text-white border-2 border-green-600 pl-4 pr-4"
+                      onClick={deletecard}
+                    >
+                      Yes, Delete it!
+                    </button>
+                    <button
+                      className="btn text-center mt-5 pt-1 pb-1 font-bold mb-3 bg-red-600 border-2 border-red-600 text-white pl-2 pr-2"
+                      onClick={closeModal}
+                    >
+                      No, Cancel!
+                    </button>
+                  </div>
+                </div>
+              </Modal>
+            </div>
+              ))
+            : all?.possiblecards
+            ? all?.possiblecards.map((card) => (
+              <div className="border border-grey-400 
+              drop-shadow-lg relative grid justify-items-center bg-white mt-14">
+              <img
+                src={card.file}
+                className="h-20  w-15 absolute top-[-2.5rem] img"
+                alt=""
+              />
+              <strong className="pt-12 ">{card.gname}</strong>
+              <p className="text-center line-clamp-2 
+break-all h-12 text-ellipsis overflow-hidden w-3/4">
                 {card.gdef}
               </p>
               <p className="text-center mt-2">
@@ -156,70 +225,6 @@ const All = () => {
                 </div>
               </Modal>
             </div>
-              ))
-            : all?.possiblecards
-            ? all?.possiblecards.map((card) => (
-                <div className="border border-grey-400 drop-shadow-lg relative grid justify-items-center bg-white mt-14">
-                  <img
-                    src={card.file}
-                    className="h-20  w-15 absolute top-[-2.5rem] img"
-                    alt=""
-                  />
-                  <strong className="pt-12 ">{card.gname}</strong>
-                  <p className="text-center line-clamp-2
-                  break-all h-12 text-ellipsis overflow-hidden">
-                    {card.gdef}
-                  </p>
-                  <p className="text-center mt-2">
-                    {card.terms
-                      ? card.terms.length === 1
-                        ? `${card.terms.length} card`
-                        : `${card.terms.length} cards`
-                      : ''}
-                  </p>
-                  <div className="flex flex-row gap-3">
-                    <Link
-                      to={`/groupdetails/${card.gid}/1`}
-                      className="btn text-center mt-5 pt-1 pb-1 font-bold mb-3 text-red-600 border-2 border-red-600 pl-2 pr-2"
-                    >
-                      View Cards
-                    </Link>
-                    <button
-                      onClick={(e) => openModal(card.gid)}
-                      className=" btn text-center mt-5 pt-1 pb-1 font-bold mb-3 text-red-600 border-2 border-red-600 pl-2 pr-2"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                  <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                  >
-                    <div className="w-96 rounded p-5">
-                      <img src={info} className="center" alt="" />
-                      <h3 className="font-bold text-center">
-                        Do You Want To Delete This Card
-                      </h3>
-                      <div className="mt-3 flex justify-center gap-3 w-100">
-                        <button
-                          className="btn text-center mt-5 pt-1 pb-1 font-bold mb-3 bg-green-600 text-white border-2 border-green-600 pl-4 pr-4"
-                          onClick={deletecard}
-                        >
-                          Yes, Delete it!
-                        </button>
-                        <button
-                          className="btn text-center mt-5 pt-1 pb-1 font-bold mb-3 bg-red-600 border-2 border-red-600 text-white pl-2 pr-2"
-                          onClick={closeModal}
-                        >
-                          No, Cancel!
-                        </button>
-                      </div>
-                    </div>
-                  </Modal>
-                </div>
               ))
             : ''
           : ''}
