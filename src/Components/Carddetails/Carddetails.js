@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { FiPrinter, FiDownload } from 'react-icons/fi';
-import { HiOutlineShare } from 'react-icons/hi';
+import { FiPrinter, FiDownload } from 'react-icons/fi'; //print and download icon from react icons
+import { HiOutlineShare } from 'react-icons/hi';//Share icon from react icons
 import { BsArrowLeft } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { BiCopy } from 'react-icons/bi';
-import { FaShare } from 'react-icons/fa';
+import { BiCopy } from 'react-icons/bi';//Copy icon from react icons
+import { FaShare } from 'react-icons/fa';//Share icon from react icons
 import Listcard from './Listcard';
 import TermCards from './TermCards';
 import copy from 'copy-to-clipboard';
-import Modal from 'react-modal';
+import Modal from 'react-modal'; //popup model
 import { useReactToPrint } from 'react-to-print';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -171,6 +171,7 @@ const Carddetails = () => {
       )}
       {beforeorafterprint == 'false' ? (
         <div className="  md:grid  md:grid-cols-4 mt-6 gap-2 ">
+          {/* List of all the terms available in Flashcard */}
           <div className=" bg-white mx-auto w-5/6 md:w-full ">
             {groupcarddetails?.terms === '' ||
             groupcarddetails?.terms === undefined ? (
@@ -184,6 +185,7 @@ const Carddetails = () => {
               />
             )}
           </div>
+          {/* Image and description of all terms */}
           <div className="col-span-2 rounded items-center">
             {groupcarddetails?.terms === '' ||
             groupcarddetails?.terms === undefined ? (
@@ -199,9 +201,9 @@ const Carddetails = () => {
               />
             )}
           </div>
-          <div className=''>
-          
-            <div className="grid grid-cols-1  mx-2  w-70 mt-7">
+          <div>         
+            <div className="grid grid-cols-1 mx-2 w-70 mt-7">
+              {/* Share button */}
               <div>
                 <button
                   onClick={openModal}
@@ -213,6 +215,7 @@ const Carddetails = () => {
                   <input type="" className="hidden" />
                 </button>
               </div>
+              {/* Download button */}
               <div className="mt-3">
                 <button
                   onClick={downloadcompdownload}
@@ -222,6 +225,7 @@ const Carddetails = () => {
                   <span className="p-1 text-base leading-normal">Download</span>
                 </button>
               </div>
+              {/* Print Button */}
               <div className="mt-3">
                 <button
                   onClick={handleButtonClick}

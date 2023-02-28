@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import UpdateStateTermImage from "./UpdateStateTermImage/UpdateStateTermImage";
 import "./Termuploadimage.css";
-const Termuploadimage = ({ setFieldValue, values, img }) => {
+const Termuploadimage = ({ setFieldValue, img }) => {
   const [Uimage, setUploadimage] = useState({});
   return (
     <div>

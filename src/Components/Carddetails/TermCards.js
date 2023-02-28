@@ -6,10 +6,8 @@ const TermCards = ({
   termdetails,
   Previouscard,
   Nextcard,
-  id1,
   id2,
-  ref,
-  popup,
+  ref
 }) => {
   return (
     <>

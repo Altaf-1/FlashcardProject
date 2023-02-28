@@ -1,77 +1,67 @@
 import React from "react";
-import { Formik, FieldArray } from "formik";
-import { v4 as uuidv4 } from 'uuid';
+import { Formik, FieldArray } from "formik"; // For Creating Form and Validation
+import { v4 as uuidv4 } from "uuid"; // For User Identification
 import CreateGroup from "./CreateGroup/CreateGroup";
 import AddTerm from "./AddTerm/AddTerm";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux"; // redux for Global State Management
 import { createflashcard } from "../../state/actions/card.js";
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
-
+import Swal from "sweetalert2"; // Notification, Popup
+import { useNavigate } from "react-router-dom";
 
 const Createcard = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
-
+  //Form feilds Validations
   const validationSchema = Yup.object().shape({
-    gname: Yup.string().required('required').max(15, 'gname must be less than 16 characters'),
+    gname: Yup.string()
+      .required("required")
+      .max(15, "gname must be less than 16 characters"),
     gdef: Yup.string()
-      .required('required')
-      .max(300, 'description must be less than 300 characters'),
+      .required("required")
+      .max(300, "description must be less than 300 characters"),
 
     terms: Yup.array().of(
       Yup.object().shape({
-        term: Yup.string().required('required').max(15, 'term must be less than 16 characters'),
-        desc: Yup.string().required('required').max(300, 
-          'description must be less than 301 characters'),
+        term: Yup.string()
+          .required("required")
+          .max(15, "term must be less than 16 characters"),
+        desc: Yup.string()
+          .required("required")
+          .max(300, "description must be less than 301 characters"),
       })
     ),
   });
 
-
-
-
   return (
-    <div className="">
+    <div>
       <Formik
         validationSchema={validationSchema}
         initialValues={{
-          gdef: '',
-          gname: '',
+          gdef: "",
+          gname: "",
           file: null,
-          terms: [{ term: '', desc: '', img: null }],
+          terms: [{ term: "", desc: "", img: null }],
         }}
-
+        //Submit function
         onSubmit={(values, { setSubmitting }) => {
-          const uuid=uuidv4 ();
+          const uuid = uuidv4();
           console.log({ values, gid: uuid });
 
           setSubmitting(false);
           dispatch(createflashcard({ ...values, gid: uuid }));
-          
-            //alert to cardcreation
-              Swal.fire({
-                icon: 'success',
-                title: 'FlashCard Created Successfully',
-                confirmButtonText: 'Save',
-              }).then((result) => {
-           
-                if (result.isConfirmed) {
-                  navigate('/allfcard');
-                }
-              });
-            
- 
 
-
-
-   
- 
+          //alert to cardcreation
+          Swal.fire({
+            icon: "success",
+            title: "FlashCard Created Successfully",
+            confirmButtonText: "Save",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate("/allfcard");
+            }
+          });
         }}
       >
         {({
@@ -84,6 +74,7 @@ const Createcard = () => {
           setFieldValue,
         }) => (
           <form onSubmit={handleSubmit}>
+            {/* First form and create flascard component */}
             <CreateGroup
               setFieldValue={setFieldValue}
               errors={errors}
@@ -92,8 +83,9 @@ const Createcard = () => {
               handlechange={handleChange}
             />
 
-<div className=" mt-5 max-w-[1100px] mx-3 rounded-md lg:mx-auto bg-white mb-2 sm:p-7 ">
-              {values?.gname === '' || values?.gdef === '' ? (
+            <div className=" mt-5 max-w-[1100px] mx-3 rounded-md lg:mx-auto bg-white mb-2 sm:p-7 ">
+              {/* Secound Form and adding term to flashcard Component */}
+              {values?.gname === "" || values?.gdef === "" ? (
                 <AddTerm
                   handlechange={handleChange}
                   errors={errors}
@@ -102,7 +94,6 @@ const Createcard = () => {
                   term={values.terms[0].term}
                   desc={values.terms[0].desc}
                   img={values.terms[0].img}
-                
                 />
               ) : (
                 <FieldArray
@@ -124,20 +115,20 @@ const Createcard = () => {
                               term={`terms.[${index}].term`}
                               desc={`terms.[${index}].desc`}
                               disabled1="false"
-                              
                             />
                           </div>
                         ))
                       ) : (
                         <></>
                       )}
+                      {/* Add more button to add another set of input add to Flashcard */}
                       <div>
-                        {values.gname !== '' && values.gdef !== '' ? (
+                        {values.gname !== "" && values.gdef !== "" ? (
                           <button
-                          className="text-sky-800 pl-6 
+                            className="text-sky-800 pl-6 
                            md:ml-[60px] sm:ml-[40px]   pb-3 font-bold md:mt-0 mt-4"
                             type="button"
-                            onClick={() => arrayHelpers.push('')}
+                            onClick={() => arrayHelpers.push("")}
                           >
                             + Add more
                           </button>
@@ -150,6 +141,7 @@ const Createcard = () => {
                 />
               )}
             </div>
+            {/* Create Button for generate flashcard */}
             <div className="flex justify-center mb-5">
               <button
                 type="submit"

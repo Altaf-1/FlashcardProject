@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import { Field } from 'formik';
-import { RiDeleteBin6Line } from 'react-icons/ri';
-import { FiEdit } from 'react-icons/fi';
-import Termuploadimage from './termuploadimages/Termuploadimage';
+import { Field } from 'formik'; // Formik Feild
+import { RiDeleteBin6Line } from 'react-icons/ri'; // Delete Button form react icons
+import { FiEdit } from 'react-icons/fi'; //Edit button from react icons
+import Termuploadimage from './termuploadimages/Termuploadimage'; //Upload image in funtion in add term form
 import { BsXSquareFill } from 'react-icons/bs';
 function AddTerm({
   handlechange,
@@ -13,7 +13,6 @@ function AddTerm({
   arrayHelpers,
   index,
   setFieldValue,
-  onClick1,
   values,
   errors,
   touched,
@@ -22,7 +21,6 @@ function AddTerm({
   const Edit = (e) => {
 
     focustext.current.focus();
-    // alert('edit')
     e.preventDefaul();
   };
 
@@ -42,6 +40,7 @@ function AddTerm({
               </h2>
             </div>
             <div className=' col-span-9 md:col-span-8'>
+              {/* Term name added in flashcard */} 
               <h3>Enter Term*</h3>
               {disabled1 === 'true' ? (
                 <Field
@@ -72,6 +71,7 @@ function AddTerm({
               ) : null}
             </div>
           </div>
+          {/* Term description added in flashcard */} 
           <div className='col-span-2 mt-2 md:ml-0 ml-10'>
             <h3>Enter Defination*</h3>
             {disabled1 === 'true' ? (
@@ -101,6 +101,7 @@ function AddTerm({
               <div>{errors.terms[index].desc}</div>
             ) : null}
           </div>
+          {/* Term image upload button */} 
           <div className="flex md:ml-0 ml-10 ">
             {disabled1 === 'true' ? (
               <button
@@ -138,11 +139,13 @@ function AddTerm({
                 <></>
               ) : (
                 <div className="mt-7 ml-5">
+                  {/* Edit particular term */} 
                   <div>
                     <button type="button" onClick={(e)=>Edit()}>
                       <FiEdit />
                     </button>
                   </div>
+                  {/* Delete  */} 
                   <div>
                     {values.terms.length === 1 ? (
                       ''

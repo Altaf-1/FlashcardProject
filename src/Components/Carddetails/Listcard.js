@@ -1,6 +1,6 @@
 import React from "react";
 
-const Listcard = ({ groupcarddetails, settermdetails,id1,termdetails,readcarddetfromurl }) => {
+const Listcard = ({ groupcarddetails, readcarddetfromurl }) => {
   return (
     <div className="grid grid-cols-1 mb-5  md:w-full md:mb-0">
       <p className="mx-auto">Flashcards</p>

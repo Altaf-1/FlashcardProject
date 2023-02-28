@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const PreviewImage = ({ file, setFieldValue, values }) => {
+const PreviewImage = ({ file, setFieldValue}) => {
   useEffect(() => {
     const reader = new FileReader(file);
     reader.readAsDataURL(file);

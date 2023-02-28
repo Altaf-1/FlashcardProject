@@ -38,7 +38,7 @@ const PrintorDownload = ({ id1, ref }) => {
             ''
           ) : (
             <div>
-              {groupcarddetails.terms.map((allterm, index) => (
+              {groupcarddetails.terms.map((allterm) => (
                 <div className="grid grid-cols-2 rounded  pt-1 w-full m-20">
                   <div className="grid grid-rows">
                     <h1 className="text-balck font-semibold text-2xl mb-4">
