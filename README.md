@@ -1,6 +1,6 @@
 # Flashcard Generator
 
-!(https://user-images.githubusercontent.com/65113182/222141199-f404a7a5-0ea1-4577-802a-9861a9baa5ce.jpeg)
+![WhatsApp Image 2023-02-28 at 5 12 45 PM](https://user-images.githubusercontent.com/65113182/222141199-f404a7a5-0ea1-4577-802a-9861a9baa5ce.jpeg)
 
 
 ## Pages
