@@ -42,7 +42,7 @@ const All = () => {
 
   const data = useSelector((state) => state.fcard);
   console.log("data", data);
-     //setall hook for sorting desc order and for flashcards length  <> 6 
+     //setall hook for sorting desc order and for flashcards length for >= 6 
   const [all, setall] = useState({
     showall: "false",
     possiblecards: false,
