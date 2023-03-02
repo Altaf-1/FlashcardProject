@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteflashcard } from "../../state/actions/card.js";
-
 const customStyles = {
   content: {
     top: "50%",
@@ -43,6 +42,7 @@ const All = () => {
 
   const data = useSelector((state) => state.fcard);
   console.log("data", data);
+     //setall hook for sorting desc order and for flashcards length  <> 6 
   const [all, setall] = useState({
     showall: "false",
     possiblecards: false,
@@ -83,6 +83,7 @@ const All = () => {
     } else {
       let mincards2 = [...fgroup];
       console.log("mincards2", fgroup);
+   
       setall({
         ...all,
         possiblecards: [...fgroup].slice(-6).reverse(),
@@ -93,7 +94,8 @@ const All = () => {
   console.log("all", all);
   console.log("fetchdata", fgroup);
   return (
-    <div className="max-w-[1100px] mx-auto sm:p-2  ">
+    
+    <div className="max-w-[1100px] mx-auto sm:p-2" data-testid="allfcardgroups">
       <div
         className="grid grid-cols-1 mx-5 mb-5 sm:mb-10 sm:grid-cols-2 md:grid-cols-3 gap-1">
         {fgroup !== "false"

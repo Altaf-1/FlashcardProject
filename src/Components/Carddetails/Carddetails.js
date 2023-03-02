@@ -152,7 +152,7 @@ const Carddetails = () => {
   }
   console.log('groupcardetails', groupcarddetails);
   return (
-    <div className="max-w-[1100px] mx-auto mt-7">
+    <div className="max-w-[1100px] mx-auto mt-7" data-testid="fcarddetails">
       <div className="flex flex-row">
         <Link to="/allfcard" className="btn mr-3 mt-2">
           <BsArrowLeft />

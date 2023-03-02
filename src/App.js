@@ -6,18 +6,16 @@ import All from "./Components/allgroups/All";
 import Carddetails from "./Components/Carddetails/Carddetails";
 
 function App() {
-  // store.subscribe(() => {
-  //   localStorage.setItem("card",JSON.stringify(store.getState().card ))
-  //   console.log("appstore",store.getState() )
-  // });
+
   store.subscribe(() => {
     console.log("getstate", store.getState());
   });
 
   return (
     <div className="w-full">
+    
       <BrowserRouter>
-        <Header />
+        <Header/>
         <Routes>
           <Route path="/">
             <Route exact path="/" element={<Createcard />} />
